@@ -42,11 +42,10 @@ const data = [
           this.brand = brand;
       }
       getInfo(){
-        return {type: this.type,
-        brand: this.brand}
+        return this.brand;
       }
       getPrice(){
-        return {price: this.price}
+        return this.price;
       }
   }
 
@@ -56,7 +55,7 @@ const data = [
       this.doors = doors;
     }
     getDoorsCount(){
-      return {doors: this.doors}
+      return this.doors;
     }
   }
 
@@ -66,8 +65,42 @@ const data = [
       this.maxSpeed = maxSpeed;
     }
     getMaxSpeed(){
-      return{maxSpeed: this.maxSpeed}
+      return this.maxSpeed;
     }
   }
 
-const car1 = new Car(data[0].type, data[0].price, data[0].brand, data[0].doors);
+const container = document.getElementById('container');
+data.forEach(el => {
+  const transport = new Transport(el.type, el.price, el.brand);
+
+  //вот тут мне не нравится
+  const car = new Car(el.type, el.price, el.brand, el.doors);
+  const bike = new Bike(el.type, el.price, el.brand, el.maxSpeed);
+  //
+  
+  const transportItem = document.createElement('div');
+  transportItem.className = 'transport-item';
+  container.append(transportItem);
+
+  const img = document.createElement('img');
+  img.src = el.image;
+  transportItem.append(img);
+
+  const info = document.createElement('div');
+  info.className = 'transport-item__info';
+  transportItem.append(info);
+
+  const brand = document.createElement('h3');
+  brand.innerText = transport.getInfo();
+  info.append(brand);
+
+  const price = document.createElement('p');
+  price.innerText = `Цена: ${transport.getPrice()} рублей`;
+  info.append(price);
+
+  const otherInfo = document.createElement('p');
+  if (transport.type === 'car') {otherInfo.innerText = `Машина имеет ${car.getDoorsCount()} двери`;}
+  else if (transport.type === 'bike') {otherInfo.innerText = `Максимальная скорость мотоцикла: ${bike.getMaxSpeed()} км/ч`;};
+
+  info.append(otherInfo);
+});
