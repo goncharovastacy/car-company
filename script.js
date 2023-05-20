@@ -70,14 +70,25 @@ const data = [
   }
 
 const container = document.getElementById('container');
+
+const carArray = data.filter((obj) => obj.type === 'car');
+for(let obj of carArray) {
+  const car = new Car(obj.type, obj.price, obj.brand, obj.doors);
+}
+
+const bikeArray = data.filter((obj) => obj.type === 'bike');
+for(let obj of bikeArray) {
+  const bike = new Bike(obj.type, obj.price, obj.brand, obj.doors);
+}
+
 data.forEach(el => {
   const transport = new Transport(el.type, el.price, el.brand);
 
   //вот тут мне не нравится
-  const car = new Car(el.type, el.price, el.brand, el.doors);
-  const bike = new Bike(el.type, el.price, el.brand, el.maxSpeed);
+  // const car = new Car(el.type, el.price, el.brand, el.doors);
+  // const bike = new Bike(el.type, el.price, el.brand, el.maxSpeed);.
   //
-  
+
   const transportItem = document.createElement('div');
   transportItem.className = 'transport-item';
   container.append(transportItem);
@@ -99,8 +110,9 @@ data.forEach(el => {
   info.append(price);
 
   const otherInfo = document.createElement('p');
-  if (transport.type === 'car') {otherInfo.innerText = `Машина имеет ${car.getDoorsCount()} двери`;}
-  else if (transport.type === 'bike') {otherInfo.innerText = `Максимальная скорость мотоцикла: ${bike.getMaxSpeed()} км/ч`;};
 
-  info.append(otherInfo);
+  // if (transport.type === 'car') {otherInfo.innerText = `Машина имеет ${car.getDoorsCount()} двери`;}
+  // else if (transport.type === 'bike') {otherInfo.innerText = `Максимальная скорость мотоцикла: ${bike.getMaxSpeed()} км/ч`;};
+
+  // info.append(otherInfo);
 });
