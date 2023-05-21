@@ -1,8 +1,12 @@
 img {
-    max-width: 300px;
+    width: 300px;
 }
 
-.transport-item {
+.item {
     display: flex;
     gap: 30px;
+}
+
+.container .item:not(:first-child) {
+    margin-top: 20px;
 }

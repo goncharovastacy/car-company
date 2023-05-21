@@ -71,48 +71,88 @@ const data = [
 
 const container = document.getElementById('container');
 
-const carArray = data.filter((obj) => obj.type === 'car');
-for(let obj of carArray) {
-  const car = new Car(obj.type, obj.price, obj.brand, obj.doors);
-}
+// Первый вариант решения
+const car1 = new Car(data[0].type, data[0].price, data[0].brand, data[0].doors);
+const car2 = new Car(data[1].type, data[1].price, data[1].brand, data[1].doors);
+const bike1 = new Bike(data[2].type, data[2].price, data[2].brand, data[2].maxSpeed);
+const bike2 = new Bike(data[3].type, data[3].price, data[3].brand, data[3].maxSpeed);
 
-const bikeArray = data.filter((obj) => obj.type === 'bike');
-for(let obj of bikeArray) {
-  const bike = new Bike(obj.type, obj.price, obj.brand, obj.doors);
-}
+container.innerHTML = `<div class="item" id="item">
+<img src="${data[0].image}" />
+<div class="item__info">
+  <h3>${car1.brand}</h3>
+  <p>Стоимость: ${car1.price} рублей</p>
+  <p>Машина имеет ${car1.getDoorsCount()} двери</p>
+</div>
+</div>
+<div class="item" id="item">
+       <img src="${data[1].image}" alt="Mercedes-Benz photo" />
+        <div class="item__info">
+          <h3>${car2.brand}</h3>
+          <p>Стоимость: ${car2.price} рублей</p>
+          <p>Машина имеет ${car2.getDoorsCount()} двери</p>
+        </div>
+      </div>
+      <div class="item" id="item">
+        <img src="${data[2].image}" />
+        <div class="item__info">
+          <h3>${bike1.brand}</h3>
+          <p>Стоимость: ${bike1.price} рублей</p>
+          <p>Максимальная скорость мотоцикла: ${bike1.getMaxSpeed()} км/ч</p>
+        </div>
+      </div>
+      <div class="item" id="item">
+        <img src="${data[3].image}" />
+        <div class="item__info">
+          <h3>${bike2.brand}</h3>
+          <p>Стоимость: ${bike2.price} рублей</p>
+          <p>Максимальная скорость мотоцикла: ${bike2.getMaxSpeed()} км/ч</p>
+        </div>
+      </div>`;
 
-data.forEach(el => {
-  const transport = new Transport(el.type, el.price, el.brand);
+      // Второй вариант, который не решен до конца
+      // Тут два отфильтрованных по типу массива, пыталась решить проблему, котрая на описана на 128 строке, но так и не поняла как
+// const carArray = data.filter((obj) => obj.type === 'car');
+// for(let obj of carArray) {
+//   const car = new Car(obj.type, obj.price, obj.brand, obj.doors);
+// }
 
-  //вот тут мне не нравится
-  // const car = new Car(el.type, el.price, el.brand, el.doors);
-  // const bike = new Bike(el.type, el.price, el.brand, el.maxSpeed);.
-  //
+// const bikeArray = data.filter((obj) => obj.type === 'bike');
+// for(let obj of bikeArray) {
+//   const bike = new Bike(obj.type, obj.price, obj.brand, obj.maxSpeed);
+// }
 
-  const transportItem = document.createElement('div');
-  transportItem.className = 'transport-item';
-  container.append(transportItem);
+//   data.forEach(el => {
+//   const transport = new Transport(el.type, el.price, el.brand);
 
-  const img = document.createElement('img');
-  img.src = el.image;
-  transportItem.append(img);
+//   // если мы создаем объекты так, то они создаются для всех объектов массива, вне зависимости от того, какой тип у объекта
+//   const car = new Car(el.type, el.price, el.brand, el.doors);
+//   const bike = new Bike(el.type, el.price, el.brand, el.maxSpeed);
 
-  const info = document.createElement('div');
-  info.className = 'transport-item__info';
-  transportItem.append(info);
+//   const transportItem = document.createElement('div');
+//   transportItem.className = 'item';
+//   container.append(transportItem);
 
-  const brand = document.createElement('h3');
-  brand.innerText = transport.getInfo();
-  info.append(brand);
+//   const img = document.createElement('img');
+//   img.src = el.image;
+//   transportItem.append(img);
 
-  const price = document.createElement('p');
-  price.innerText = `Цена: ${transport.getPrice()} рублей`;
-  info.append(price);
+//   const info = document.createElement('div');
+//   info.className = 'transport-item__info';
+//   transportItem.append(info);
 
-  const otherInfo = document.createElement('p');
+//   const brand = document.createElement('h3');
+//   brand.innerText = transport.getInfo();
+//   info.append(brand);
 
-  // if (transport.type === 'car') {otherInfo.innerText = `Машина имеет ${car.getDoorsCount()} двери`;}
-  // else if (transport.type === 'bike') {otherInfo.innerText = `Максимальная скорость мотоцикла: ${bike.getMaxSpeed()} км/ч`;};
+//   const price = document.createElement('p');
+//   price.innerText = `Цена: ${transport.getPrice()} рублей`;
+//   info.append(price);
 
-  // info.append(otherInfo);
-});
+//   const otherInfo = document.createElement('p');
+
+//   if (transport.type === 'car') {otherInfo.innerText = `Машина имеет ${car.getDoorsCount()} двери`;}
+//   else if (transport.type === 'bike') {otherInfo.innerText = `Максимальная скорость мотоцикла: ${bike.getMaxSpeed()} км/ч`;};
+
+//   info.append(otherInfo);
+// });
