@@ -110,24 +110,10 @@ container.innerHTML = `<div class="item" id="item">
         </div>
       </div>`;
 
-      // Второй вариант, который не решен до конца
-      // Тут два отфильтрованных по типу массива, пыталась решить проблему, котрая на описана на 128 строке, но так и не поняла как
-// const carArray = data.filter((obj) => obj.type === 'car');
-// for(let obj of carArray) {
-//   const car = new Car(obj.type, obj.price, obj.brand, obj.doors);
-// }
-
-// const bikeArray = data.filter((obj) => obj.type === 'bike');
-// for(let obj of bikeArray) {
-//   const bike = new Bike(obj.type, obj.price, obj.brand, obj.maxSpeed);
-// }
+// Второй вариант
 
 //   data.forEach(el => {
 //   const transport = new Transport(el.type, el.price, el.brand);
-
-//   // если мы создаем объекты так, то они создаются для всех объектов массива, вне зависимости от того, какой тип у объекта
-//   const car = new Car(el.type, el.price, el.brand, el.doors);
-//   const bike = new Bike(el.type, el.price, el.brand, el.maxSpeed);
 
 //   const transportItem = document.createElement('div');
 //   transportItem.className = 'item';
@@ -151,8 +137,13 @@ container.innerHTML = `<div class="item" id="item">
 
 //   const otherInfo = document.createElement('p');
 
-//   if (transport.type === 'car') {otherInfo.innerText = `Машина имеет ${car.getDoorsCount()} двери`;}
-//   else if (transport.type === 'bike') {otherInfo.innerText = `Максимальная скорость мотоцикла: ${bike.getMaxSpeed()} км/ч`;};
+//   if (transport.type === 'car') {
+//     const car = new Car(el.type, el.price, el.brand, el.doors);
+//     otherInfo.innerText = `Машина имеет ${car.getDoorsCount()} двери`;
+//   } else if (transport.type === 'bike') {
+//     const bike = new Bike(el.type, el.price, el.brand, el.maxSpeed);
+//     otherInfo.innerText = `Максимальная скорость мотоцикла: ${bike.getMaxSpeed()} км/ч`;
+//   }
 
 //   info.append(otherInfo);
 // });
